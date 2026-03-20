@@ -1,0 +1,25 @@
+services:
+  lastsave-app:
+    image: ghcr.io/zor07/lastsave-platform:latest
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8581:8080"
+    env_file:
+      - .env
+    depends_on:
+      - lastsave-db
+
+  lastsave-db:
+    image: postgres:15-alpine
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8580:5432"
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    volumes:
+      - lastsave_pgdata:/var/lib/postgresql/data
+
+volumes:
+  lastsave_pgdata:
