@@ -6,6 +6,8 @@ services:
       - "127.0.0.1:8581:8080"
     env_file:
       - .env
+    environment:
+      JAVA_TOOL_OPTIONS: "-Djava.net.preferIPv4Stack=true"
     depends_on:
       - lastsave-db
     volumes:
