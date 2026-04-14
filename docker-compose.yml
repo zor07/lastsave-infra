@@ -6,8 +6,6 @@ services:
       - "127.0.0.1:8581:8080"
     env_file:
       - .env
-    environment:
-      JAVA_TOOL_OPTIONS: "-Dhttps.proxyHost=172.17.0.1 -Dhttps.proxyPort=8118"
     depends_on:
       - lastsave-db
     volumes:
