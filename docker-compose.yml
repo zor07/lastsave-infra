@@ -6,6 +6,10 @@ services:
       - "127.0.0.1:8581:8080"
     env_file:
       - .env
+    environment:
+      JAVA_TOOL_OPTIONS: "-DsocksProxyHost=host.docker.internal -DsocksProxyPort=1080"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     depends_on:
       - lastsave-db
     volumes:
